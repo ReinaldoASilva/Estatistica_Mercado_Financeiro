@@ -85,6 +85,51 @@ fig02.update_layout(width=400, height=400, template = 'simple_white',
                     paper_bgcolor="#f7f8fa", margin=dict(l=20, r=20, t=20, b=20),
                     showlegend=False)
 
+print(np.quantile(normal_dist, 0.25))
+print(np.percentile(normal_dist, 25))
+
+df_normal_distrib = pd.DataFrame(normal_dist)
+df_normal_distrib.describe()
+
+# Assimetria (Skewness)
+
+stats.skew(normal_dist)
+
+# Medidas de dispersão(amplitude, desvio padrão e médio, coeficiente de variação e intervalo de confiança)
+
+# Amplitude para alvos/stops
+
+amplitude = normal_dist.max() - normal_dist.min()
+amplitude
+
+# Desvio padrão é uma medida que indica a dispersão dos dados dentro de uma amostra com relação a média
+
+desvio_padrao = np.std(normal_dist, ddof = True)
+
+# Coeficiente de variação
+# interessante para comparações e avaliar a consistência(ex., pagamento de dividendos)
+
+normal_dist.std(ddof = True)/normal_dist.mean()*100
+
+# Erro padrão da média
+
+stats.stats.sem(normal_dist)
+
+# Intervalo de confiança de 95%
+# Probabilidade de 95% da média real estar nesse intervalor
+
+
+IC_95 = stats.t.interval(alpha=0.95, df=len(normal_dist)-1, loc=np.mean(normal_dist), scale=stats.sem(normal_dist))
+
+# Curtose
+
+stats.kurtosis(normal_dist, fisher=True)
+
+
+
+
+
+
 
 
 
